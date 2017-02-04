@@ -13,7 +13,7 @@ use League\Event\EmitterAwareInterface;
 use League\Event\EmitterAwareTrait;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Grant\GrantTypeInterface;
-use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
+use League\OAuth2\Server\Repositories\AccessTokenWriteInterface;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
 use League\OAuth2\Server\RequestTypes\AuthorizationRequest;
@@ -57,7 +57,7 @@ class AuthorizationServer implements EmitterAwareInterface
     private $clientRepository;
 
     /**
-     * @var AccessTokenRepositoryInterface
+     * @var AccessTokenWriteInterface
      */
     private $accessTokenRepository;
 
@@ -70,7 +70,7 @@ class AuthorizationServer implements EmitterAwareInterface
      * New server instance.
      *
      * @param ClientRepositoryInterface      $clientRepository
-     * @param AccessTokenRepositoryInterface $accessTokenRepository
+     * @param AccessTokenWriteInterface      $accessTokenRepository
      * @param ScopeRepositoryInterface       $scopeRepository
      * @param CryptKey|string                $privateKey
      * @param CryptKey|string                $publicKey
@@ -78,7 +78,7 @@ class AuthorizationServer implements EmitterAwareInterface
      */
     public function __construct(
         ClientRepositoryInterface $clientRepository,
-        AccessTokenRepositoryInterface $accessTokenRepository,
+        AccessTokenWriteInterface $accessTokenRepository,
         ScopeRepositoryInterface $scopeRepository,
         $privateKey,
         $publicKey,

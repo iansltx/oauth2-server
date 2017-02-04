@@ -12,13 +12,13 @@ namespace League\OAuth2\Server;
 use League\OAuth2\Server\AuthorizationValidators\AuthorizationValidatorInterface;
 use League\OAuth2\Server\AuthorizationValidators\BearerTokenValidator;
 use League\OAuth2\Server\Exception\OAuthServerException;
-use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
+use League\OAuth2\Server\Repositories\AccessTokenReadInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class ResourceServer
 {
     /**
-     * @var AccessTokenRepositoryInterface
+     * @var AccessTokenReadInterface
      */
     private $accessTokenRepository;
 
@@ -35,12 +35,12 @@ class ResourceServer
     /**
      * New server instance.
      *
-     * @param AccessTokenRepositoryInterface       $accessTokenRepository
+     * @param AccessTokenReadInterface       $accessTokenRepository
      * @param CryptKey|string                      $publicKey
      * @param null|AuthorizationValidatorInterface $authorizationValidator
      */
     public function __construct(
-        AccessTokenRepositoryInterface $accessTokenRepository,
+        AccessTokenReadInterface $accessTokenRepository,
         $publicKey,
         AuthorizationValidatorInterface $authorizationValidator = null
     ) {

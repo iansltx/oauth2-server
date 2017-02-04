@@ -14,41 +14,12 @@ use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 
 /**
- * Access token interface.
+ * Access token repository interface, included to maintain backward
+ * compatibility with implementations. See Read and Write interfaces
+ * for methods that need to be implemented for, respectively,
+ * resource and authorization servers.
  */
-interface AccessTokenRepositoryInterface extends RepositoryInterface
+interface AccessTokenRepositoryInterface
+    extends RepositoryInterface, AccessTokenReadInterface, AccessTokenWriteInterface
 {
-    /**
-     * Create a new access token
-     *
-     * @param ClientEntityInterface  $clientEntity
-     * @param ScopeEntityInterface[] $scopes
-     * @param mixed                  $userIdentifier
-     *
-     * @return AccessTokenEntityInterface
-     */
-    public function getNewToken(ClientEntityInterface $clientEntity, array $scopes, $userIdentifier = null);
-
-    /**
-     * Persists a new access token to permanent storage.
-     *
-     * @param AccessTokenEntityInterface $accessTokenEntity
-     */
-    public function persistNewAccessToken(AccessTokenEntityInterface $accessTokenEntity);
-
-    /**
-     * Revoke an access token.
-     *
-     * @param string $tokenId
-     */
-    public function revokeAccessToken($tokenId);
-
-    /**
-     * Check if the access token has been revoked.
-     *
-     * @param string $tokenId
-     *
-     * @return bool Return true if this token has been revoked
-     */
-    public function isAccessTokenRevoked($tokenId);
 }
